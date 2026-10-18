@@ -174,6 +174,7 @@
     const top = stack[stack.length - 1];
     $$('.view').forEach((v) => v.classList.toggle('active', v.id === top));
     $('#tabbar').hidden = !(top === 'home' || top === 'journal');
+    if (typeof showInstallUI === 'function') showInstallUI();
     $$('.tabbtn').forEach((b) => b.classList.toggle('active', b.dataset.tab === top));
     onShow[top]();
     const sc = $('#' + top + ' .scroll') || $('#' + top);
@@ -1015,6 +1016,60 @@
     if (e.code === 'Space') { e.preventDefault(); const ph = S.plan[S.i]; if (ph.open && !S.paused) $('#stage').click(); else pause(!S.paused); }
     if (e.key === 'Escape') finish(false);
   });
+
+  /* ---------------- install ----------------
+   * Chrome/Edge/Samsung fire beforeinstallprompt, so the button installs directly.
+   * iOS has no install API, so the button shows the Share → Add to Home Screen steps.
+   */
+  const ua = navigator.userAgent;
+  const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isAndroid = /Android/.test(ua);
+  const inAppBrowser = /FBAN|FBAV|Instagram|Line\/|GSA\/|Messenger|Twitter/.test(ua);
+  const standalone = () => window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  let deferredInstall = null;
+
+  function showInstallUI() {
+    const inst = standalone();
+    $('#installLink').hidden = inst;
+    const snoozed = Date.now() - (store.get('br.installSnooze', 0)) < 3 * 864e5;
+    $('#installCard').hidden = inst || snoozed || !(stack[stack.length - 1] === 'home' || stack[stack.length - 1] === 'journal');
+  }
+  window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredInstall = e; showInstallUI(); });
+  window.addEventListener('appinstalled', () => { deferredInstall = null; showInstallUI(); $('#installCard').hidden = true; toast('Breathe is on your home screen'); });
+
+  const shareIcon = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2.5 7.8 6.7l1.4 1.4L11 6.3V15h2V6.3l1.8 1.8 1.4-1.4zM5 10h3v2H7v8h10v-8h-1v-2h3v12H5z"/></svg>';
+  const plusIcon = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path fill="currentColor" d="M11 7h2v4h4v2h-4v4h-2v-4H7v-2h4z"/></svg>';
+  function installSteps() {
+    let steps;
+    if (inAppBrowser) {
+      steps = ['Open this page in ' + (isIOS ? 'Safari' : 'Chrome') + ': tap the ••• menu and choose <b>Open in browser</b>.', 'Then tap <b>Install Breathe</b> again.'];
+    } else if (isIOS) {
+      steps = [
+        `Tap the <b>Share</b> button ${shareIcon} ${/CriOS|FxiOS|EdgiOS/.test(ua) ? 'in the address bar' : 'in the toolbar at the bottom of Safari'}.`,
+        `Scroll down and tap <b>Add to Home Screen</b> ${plusIcon}`,
+        'Tap <b>Add</b>. Breathe appears on your home screen with its own icon.',
+      ];
+    } else if (isAndroid) {
+      steps = ['Tap the browser menu <b>⋮</b> (top right).', 'Tap <b>Install app</b> or <b>Add to Home screen</b>.', 'Tap <b>Install</b> to confirm.'];
+    } else {
+      steps = ['In Chrome or Edge, click the install icon at the right end of the address bar.', 'Or open the browser menu and choose <b>Install Breathe</b>.'];
+    }
+    $('#installSteps').innerHTML = steps.map((s) => `<li>${s}</li>`).join('');
+    $('#installSheet').hidden = false;
+  }
+  async function install() {
+    if (deferredInstall) {
+      deferredInstall.prompt();
+      const { outcome } = await deferredInstall.userChoice;
+      deferredInstall = null;
+      if (outcome === 'accepted') $('#installCard').hidden = true;
+      return;
+    }
+    installSteps();
+  }
+  $('#installBtn').addEventListener('click', install);
+  $('#installLink').addEventListener('click', install);
+  $('#installClose').addEventListener('click', () => { store.set('br.installSnooze', Date.now()); $('#installCard').hidden = true; });
 
   /* ---------------- boot ---------------- */
   render();

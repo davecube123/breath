@@ -24,6 +24,7 @@
       <h1>Breathe</h1>
     </header>
     <div id="library"></div>
+    <p class="foot"><button class="link" id="installLink" hidden>Install Breathe on this device</button></p>
     <p class="foot">For wellbeing, not medical treatment. Stop if you feel dizzy or unwell.</p>
   </main>
 
@@ -220,6 +221,26 @@
       <h3>Step</h3>
       <div class="list" id="kindList"></div>
       <button class="ghost wide" data-close>Cancel</button>
+    </div>
+  </div>
+
+  <!-- install prompt -->
+  <div class="install-card" id="installCard" hidden>
+    <img src="icons/icon-192.png?v=2" alt="" width="48" height="48">
+    <div class="install-text"><b>Install Breathe</b><span>Full screen, offline, one tap from your home screen.</span></div>
+    <button class="x" id="installClose" aria-label="Not now">×</button>
+    <button class="primary small" id="installBtn">Install</button>
+  </div>
+
+  <div class="sheet-backdrop" id="installSheet" hidden>
+    <div class="sheet">
+      <div class="grabber"></div>
+      <div class="install-head">
+        <img src="icons/icon-192.png?v=2" alt="" width="64" height="64">
+        <h3>Add Breathe to your Home Screen</h3>
+      </div>
+      <ol class="install-steps" id="installSteps"></ol>
+      <button class="ghost wide" data-close>Done</button>
     </div>
   </div>
 
