@@ -283,6 +283,8 @@
     $('#setupHow').previousElementSibling.hidden = !p.how;
     $('#setupScience').textContent = p.science || '';
     $('#scienceLabel').hidden = !p.science;
+    $('#setupLong').textContent = p.longterm || '';
+    $('#longLabel').hidden = !p.longterm;
     const refs = $('#setupRefs'); refs.textContent = '';
     (p.refs || []).forEach((r) => {
       const li = h('li'); const a = h('a', '', r.t); a.href = r.u; a.target = '_blank'; a.rel = 'noopener';
@@ -860,7 +862,7 @@
     draftSrc = src && isCustom(src) ? src : null;
     if (src) {
       draft = clone(src);
-      if (!draftSrc) { draft.name = src.name + ' (mine)'; delete draft.refs; delete draft.science; }
+      if (!draftSrc) { draft.name = src.name + ' (mine)'; delete draft.refs; delete draft.science; delete draft.longterm; }
     } else {
       draft = { name: '', cat: 'settle', minutes: 5, rounds: 3, sets: [{ reps: 1, phases: [{ k: 'in', s: 4 }, { k: 'out', s: 6 }] }] };
     }

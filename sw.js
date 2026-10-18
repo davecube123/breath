@@ -1,5 +1,5 @@
 // Network-first so updates show up when online; the cache keeps it working offline.
-const CACHE = 'breathe-v4';
+const CACHE = 'breathe-v5';
 const SHELL = ['./', 'index.html', 'styles.css', 'app.js', 'audio.js', 'patterns.js', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/apple-touch-icon.png', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png'];
 

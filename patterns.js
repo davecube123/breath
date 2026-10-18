@@ -11,6 +11,9 @@
  * `s` is seconds. `open: true` on a hold means "hold until you tap"
  * (the time is recorded in your journal); `s` is then the maximum.
  *
+ * Text fields: tagline, how, science (why it works), longterm (what regular
+ * practice does over weeks) and refs (citations for both).
+ *
  * Patterns with a single set of a single repetition are timed by minutes,
  * everything else by rounds.
  */
@@ -23,6 +26,7 @@ window.BREATH_PATTERNS = [
     tagline: 'Double inhale, long exhale. The fastest way down.',
     how: 'Breathe in through the nose until comfortably full, then take a second short sip to fill the lungs completely. Exhale slowly through the mouth until empty.',
     science: 'In a month-long randomised trial, five minutes a day of cyclic sighing improved mood and lowered resting breathing rate more than mindfulness meditation, box breathing or cyclic hyperventilation. The second inhale re-opens collapsed alveoli and the long exhale engages the vagal brake.',
+    longterm: 'After 28 days of five minutes a day, cyclic sighing raised daily positive mood more than mindfulness meditation and gave the largest drop in resting breathing rate. Anxiety fell by a similar amount in every group. This is one month-long trial, so effects beyond a month are untested.',
     refs: [
       { t: 'Balban et al. (2023), Cell Reports Medicine 4:100895', u: 'https://pubmed.ncbi.nlm.nih.gov/36630953/' },
     ],
@@ -36,9 +40,11 @@ window.BREATH_PATTERNS = [
     tagline: '5.5 breaths a minute, in step with your heart.',
     how: 'Smooth, even breaths through the nose, never forced. Let the belly lead. Keep the transitions round, with no pauses.',
     science: 'Around 5.5–6 breaths per minute, heart rhythm, blood pressure and breathing oscillate together (cardiovascular resonance). This maximises heart-rate variability and baroreflex gain. A 2022 meta-analysis of slow-breathing studies found reliable increases in vagally mediated HRV.',
+    longterm: 'Resonance breathing is the core of heart-rate-variability biofeedback, the best-studied form of breathwork. Across dozens of randomised trials, several weeks of practice brought small-to-moderate improvements in stress, anxiety, depression and performance. Changes in resting HRV and blood pressure are smaller and less consistent.',
     refs: [
       { t: 'Lehrer & Gevirtz (2014), Frontiers in Psychology 5:756', u: 'https://doi.org/10.3389/fpsyg.2014.00756' },
       { t: 'Laborde et al. (2022), Neurosci. Biobehav. Rev. 138:104711', u: 'https://doi.org/10.1016/j.neubiorev.2022.104711' },
+      { t: 'Lehrer et al. (2020), Appl. Psychophysiol. Biofeedback 45:109', u: 'https://doi.org/10.1007/s10484-020-09466-z' },
     ],
     minutes: 10,
     sets: [{ reps: 1, phases: [{ k: 'in', s: 5.5 }, { k: 'out', s: 5.5 }] }],
@@ -50,8 +56,10 @@ window.BREATH_PATTERNS = [
     tagline: '3 in, 7 out. Slow and exhale-weighted.',
     how: 'Inhale gently through the nose for 3, exhale slowly for 7, through the nose or pursed lips.',
     science: 'At 6 breaths a minute, an inhale-to-exhale ratio of about 0.4 produced higher HRV and more reported relaxation than a ratio above 1. The heart slows on every exhale (respiratory sinus arrhythmia), so a longer exhale means more time in that state.',
+    longterm: 'No trial has tested this exact rhythm over weeks. It is a form of slow breathing, and a meta-analysis of randomised trials found that regular breathwork lowers stress, anxiety and depression by a small-to-moderate amount.',
     refs: [
       { t: 'Van Diest et al. (2014), Appl. Psychophysiol. Biofeedback 39:171', u: 'https://doi.org/10.1007/s10484-014-9253-x' },
+      { t: 'Fincham et al. (2023), Scientific Reports 13:432', u: 'https://doi.org/10.1038/s41598-022-27247-y' },
     ],
     minutes: 8,
     sets: [{ reps: 1, phases: [{ k: 'in', s: 3 }, { k: 'out', s: 7 }] }],
@@ -63,8 +71,10 @@ window.BREATH_PATTERNS = [
     tagline: 'Hum on a long exhale. Bhramari.',
     how: 'Inhale through the nose for 4. Exhale for 8 with lips closed, humming a low, steady note. Feel the buzz in the face and chest.',
     science: 'Humming raises nasal nitric oxide about fifteen-fold compared with quiet exhalation, and the slow, exhale-weighted rhythm adds the same vagal benefits as other slow breathing. Humming also keeps the exhale long and steady without any counting.',
+    longterm: 'There are no good long-term trials of humming breath. The nitric oxide boost lasts only while you hum. The best guide is the general breathwork evidence: regular practice lowers stress, anxiety and depression by a small-to-moderate amount.',
     refs: [
       { t: 'Weitzberg & Lundberg (2002), Am. J. Respir. Crit. Care Med. 166:144', u: 'https://doi.org/10.1164/rccm.200202-138BC' },
+      { t: 'Fincham et al. (2023), Scientific Reports 13:432', u: 'https://doi.org/10.1038/s41598-022-27247-y' },
     ],
     minutes: 5,
     sets: [{ reps: 1, phases: [{ k: 'in', s: 4 }, { k: 'out', s: 8 }] }],
@@ -76,8 +86,10 @@ window.BREATH_PATTERNS = [
     tagline: 'A long hold and longer exhale, for sleep.',
     how: 'Inhale quietly through the nose for 4, hold for 7, exhale through the mouth with a soft whoosh for 8. Start with a few rounds. The hold should never strain.',
     science: 'The 4-7-8 rhythm is about 3 breaths a minute and heavily exhale-weighted. A controlled study found improved HRV and lower blood pressure after 4-7-8 practice, even when participants were sleep-deprived. The evidence is promising but limited.',
+    longterm: 'There are no long-term trials of 4-7-8, and its reputation for sleep rests mostly on anecdote. As a slow, exhale-weighted rhythm it should share the general benefits of regular breathwork: small-to-moderate drops in stress and anxiety.',
     refs: [
       { t: 'Vierra et al. (2022), Physiological Reports 10:e15389', u: 'https://doi.org/10.14814/phy2.15389' },
+      { t: 'Fincham et al. (2023), Scientific Reports 13:432', u: 'https://doi.org/10.1038/s41598-022-27247-y' },
     ],
     minutes: 4,
     sets: [{ reps: 1, phases: [{ k: 'in', s: 4 }, { k: 'holdIn', s: 7 }, { k: 'out', s: 8 }] }],
@@ -91,6 +103,7 @@ window.BREATH_PATTERNS = [
     tagline: 'Four equal sides. Calm, alert, steady.',
     how: 'Inhale for 4, hold for 4, exhale for 4, hold empty for 4. Keep the holds soft, with the throat relaxed.',
     science: 'Equal-ratio breathing with holds slows breathing to about 4 per minute while keeping you alert. It was one of the active practices in the Stanford trial, where it improved mood and lowered anxiety. It is widely used in high-stress professions to regain composure without getting drowsy.',
+    longterm: 'In the 28-day Stanford trial, daily box breathing improved mood, a little less than cyclic sighing, and lowered anxiety about as much as the other practices. Effects beyond a month have not been studied.',
     refs: [
       { t: 'Balban et al. (2023), Cell Reports Medicine 4:100895', u: 'https://pubmed.ncbi.nlm.nih.gov/36630953/' },
       { t: 'Röttger et al. (2021), Appl. Psychophysiol. Biofeedback 46:19', u: 'https://pubmed.ncbi.nlm.nih.gov/32757097/' },
@@ -105,9 +118,11 @@ window.BREATH_PATTERNS = [
     tagline: '5 in, 5 out. The simplest steady state.',
     how: 'Inhale for 5, exhale for 5, smooth and silent. A good default for work breaks.',
     science: 'Six breaths a minute is close to most adults\' resonance frequency. Even a single short session increases HRV and baroreflex sensitivity, and improves emotional control and attention compared with spontaneous breathing.',
+    longterm: 'Six breaths a minute is resonance-frequency breathing, used in heart-rate-variability biofeedback. Across dozens of randomised trials, several weeks of practice brought small-to-moderate improvements in stress, anxiety, depression and performance.',
     refs: [
       { t: 'Zaccaro et al. (2018), Frontiers in Human Neuroscience 12:353', u: 'https://doi.org/10.3389/fnhum.2018.00353' },
       { t: 'Steffen et al. (2017), Frontiers in Public Health 5:222', u: 'https://doi.org/10.3389/fpubh.2017.00222' },
+      { t: 'Lehrer et al. (2020), Appl. Psychophysiol. Biofeedback 45:109', u: 'https://doi.org/10.1007/s10484-020-09466-z' },
     ],
     minutes: 6,
     sets: [{ reps: 1, phases: [{ k: 'in', s: 5 }, { k: 'out', s: 5 }] }],
@@ -121,6 +136,7 @@ window.BREATH_PATTERNS = [
     tagline: '30 deep breaths, then a short empty hold.',
     how: 'Breathe in deeply through the nose and let the breath fall out of the mouth, 30 times. Then exhale fully and hold empty for 15 seconds. Repeat.',
     science: 'This is the inhale-weighted arm of the Stanford trial. It raised positive affect and was the only practice that increased reported energy and alertness. Fast, deep breathing drives sympathetic activation and adrenaline, and the hold lets CO₂ recover.',
+    longterm: 'Over the 28-day Stanford trial, daily practice raised positive mood and lowered anxiety about as much as the other breathing practices. Effects beyond a month are untested.',
     refs: [
       { t: 'Balban et al. (2023), Cell Reports Medicine 4:100895', u: 'https://pubmed.ncbi.nlm.nih.gov/36630953/' },
     ],
@@ -138,8 +154,10 @@ window.BREATH_PATTERNS = [
     tagline: '30 breaths, a held exhale as long as is comfortable, a recovery breath.',
     how: 'Take 30 full breaths: belly, chest, let go. After the last exhale, hold empty and tap when you need to breathe. Then take a deep recovery breath and hold it for 15 seconds.',
     science: 'In a controlled study, people trained in this method (popularised by Wim Hof) voluntarily raised their adrenaline and dampened their inflammatory response to an endotoxin. Your retention times are logged so you can watch them grow.',
+    longterm: 'In the Kox study, participants trained for 10 days with cold exposure and meditation as well as breathing, so breathing alone can\'t take full credit. A 2024 systematic review found the method may reduce inflammation by raising adrenaline, but evidence for other benefits is limited and most studies are small with a high risk of bias.',
     refs: [
       { t: 'Kox et al. (2014), PNAS 111:7379', u: 'https://doi.org/10.1073/pnas.1322174111' },
+      { t: 'Almahayni & Hammond (2024), PLOS ONE 19:e0286933', u: 'https://doi.org/10.1371/journal.pone.0286933' },
     ],
     caution: true,
     rounds: 3,
@@ -156,6 +174,7 @@ window.BREATH_PATTERNS = [
     tagline: 'Quick pumping exhales. Bright and clear.',
     how: 'Sit tall. Snap the belly in to push the air out of the nose, and let the inhale happen by itself. One pump per second, then rest between rounds.',
     science: 'High-frequency yoga breathing at 1–2 Hz improved performance on attention and cancellation tasks immediately afterwards, and shifts heart-rate variability towards sympathetic dominance, an alert, ready state.',
+    longterm: 'Long-term studies are few and small, mostly yoga programmes that combine several practices. There is no reliable evidence yet for lasting effects of kapalabhati on its own.',
     refs: [
       { t: 'Telles et al. (2008), Indian J. Med. Sci. 62:20', u: 'https://pubmed.ncbi.nlm.nih.gov/18239268/' },
       { t: 'Telles et al. (2011), BioPsychoSocial Medicine 5:4', u: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3088536/' },

@@ -34,7 +34,7 @@ Deploys to GitHub Pages on every push to `main` (Settings → Pages → Source: 
 | Power Breathing | 30 breaths, hold until you tap, recovery hold 15 s | Charge | Kox et al. 2014, *PNAS* (voluntary adrenaline ↑) |
 | Kapalabhati | 45 quick pumps, 30 s rest | Charge | Telles et al. 2008, 2011 (attention ↑, sympathetic shift) |
 
-Each pattern's screen explains how to do it and why it works, and links to the papers.
+Each pattern's screen explains how to do it, why it works and what regular practice does over time, and links to the papers.
 
 ## Features
 
