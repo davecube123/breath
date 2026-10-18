@@ -413,6 +413,7 @@
   function openCheckin() {
     beforeVals = {};
     checkinUI($('#checkBefore'), beforeVals);
+    $('#checkSheet').dataset.cat = current.cat;
     $('#checkSheet').hidden = false;
     // Audio and speech can only be unlocked inside a tap, so warm them up now.
     A.resume(); if (prefs.voice) A.primeVoice();
